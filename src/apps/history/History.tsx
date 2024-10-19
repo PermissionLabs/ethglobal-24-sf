@@ -1,7 +1,7 @@
 import { useSafeHistory } from '../../libs/hooks/useSafeHistorty';
 
 export const History = () => {
-  const { data } = useSafeHistory();
+  const { data, isFetching } = useSafeHistory();
   return (
     <div>
       {data?.results.map((txn) => (
@@ -10,6 +10,7 @@ export const History = () => {
           <p>{txn.executionDate}</p>
         </div>
       ))}
+      {isFetching && <p>Loading...</p>}
     </div>
   );
 };

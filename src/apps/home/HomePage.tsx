@@ -1,6 +1,7 @@
 import { useAccount } from 'wagmi';
 import { Connector } from '../connector/Connector';
 import { History } from '../history/History';
+import { Send } from '../send/Send';
 
 export const HomePage = () => {
   const { address } = useAccount();
@@ -13,6 +14,7 @@ export const HomePage = () => {
       <div>
         <History />
       </div>
+      <Send />
     </div>
   );
 };

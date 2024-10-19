@@ -3,6 +3,7 @@ import { useQuery } from 'wagmi/query';
 import { useSafeAppsSDK } from '@safe-global/safe-apps-react-sdk';
 import type { AllTransactionsListResponse } from '@safe-global/api-kit';
 import { useSafe } from '../../apps/providers/SafeProvider';
+import { QueryKeys } from '../constants/queryKeys';
 
 export const useSafeHistory = () => {
   const { address } = useAccount();
@@ -14,7 +15,7 @@ export const useSafeHistory = () => {
     AllTransactionsListResponse,
     [string, string | undefined, number]
   >({
-    queryKey: ['safeHistory', address, safeInfo.chainId],
+    queryKey: [QueryKeys.safeHistory, address, safeInfo.chainId],
     queryFn: async () => {
       if (address) {
         const safeInfo = await sdk.safe.getInfo();
