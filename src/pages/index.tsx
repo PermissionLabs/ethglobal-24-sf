@@ -1,3 +1,5 @@
-import { ExamplePage } from '@/apps/example/ExamplePage';
+// import { HomePage } from '@/apps/home/HomePage';
 
-export default ExamplePage;
+import { HomePage } from '../apps/home/HomePage';
+
+export default HomePage;
