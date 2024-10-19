@@ -8,12 +8,21 @@ importers:
 
   .:
     dependencies:
+      '@safe-global/api-kit':
+        specifier: ^2.5.2
+        version: 2.5.2(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@5.0.10)
+      '@safe-global/protocol-kit':
+        specifier: ^5.0.2
+        version: 5.0.2(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@5.0.10)
       '@safe-global/safe-apps-react-sdk':
         specifier: ^4.7.2
         version: 4.7.2(bufferutil@4.0.8)(react@18.3.1)(typescript@5.5.4)(utf-8-validate@5.0.10)
       '@safe-global/safe-apps-sdk':
         specifier: ^9.1.0
         version: 9.1.0(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@5.0.10)
+      '@safe-global/types-kit':
+        specifier: ^1.0.0
+        version: 1.0.0(typescript@5.5.4)
       '@tanstack/react-query':
         specifier: 5.54.1
         version: 5.54.1(react@18.3.1)
@@ -1186,6 +1195,12 @@ packages:
       '@types/react':
         optional: true
 
+  '@safe-global/api-kit@2.5.2':
+    resolution: {integrity: sha512-+3YTBzrZKsXjJ5oW7XyI5j4UR78TLDWSkIGT4Qefq96mX+GYNkfg981toLTEtPm8FKa0RV6ImDhUtnunFzE9Pg==}
+
+  '@safe-global/protocol-kit@5.0.2':
+    resolution: {integrity: sha512-GS+k7KR7bv/bWSR36UAIRHpjoXZbSlZtw7FfRkb0D48iqWob7/kw9YbjcFKchpSeHVx3bI/MTsPA0izscUgDcg==}
+
   '@safe-global/safe-apps-provider@0.18.3':
     resolution: {integrity: sha512-f/0cNv3S4v7p8rowAjj0hDCg8Q8P/wBjp5twkNWeBdvd0RDr7BuRBPPk74LCqmjQ82P+1ltLlkmVFSmxTIT7XQ==}
 
@@ -1197,9 +1212,18 @@ packages:
   '@safe-global/safe-apps-sdk@9.1.0':
     resolution: {integrity: sha512-N5p/ulfnnA2Pi2M3YeWjULeWbjo7ei22JwU/IXnhoHzKq3pYCN6ynL9mJBOlvDVv892EgLPCWCOwQk/uBT2v0Q==}
 
+  '@safe-global/safe-deployments@1.37.10':
+    resolution: {integrity: sha512-lcxX9CV+xdcLs4dF6Cx18zDww5JyqaX6RdcvU0o/34IgJ4Wjo3J/RNzJAoMhurCAfTGr+0vyJ9V13Qo50AR6JA==}
+
   '@safe-global/safe-gateway-typescript-sdk@3.22.2':
     resolution: {integrity: sha512-Y0yAxRaB98LFp2Dm+ACZqBSdAmI3FlpH/LjxOZ94g/ouuDJecSq0iR26XZ5QDuEL8Rf+L4jBJaoDC08CD0KkJw==}
     engines: {node: '>=16'}
+
+  '@safe-global/safe-modules-deployments@2.2.4':
+    resolution: {integrity: sha512-m396ZrBPhZVYkapTTIuizyOOtoZsCKbicl0ztgDFfDbi7KbS6AtDP6cV89AYosQxUQS+v0q4ksQd30/j3L1BtQ==}
+
+  '@safe-global/types-kit@1.0.0':
+    resolution: {integrity: sha512-jZNUeHbWobeVrURbcEvfas4Q1IDasQni5UYm2umUtAR6SBDazp1kGni8IjZPRKq3+8q+fYwu9FmKpX50rUYn3w==}
 
   '@scure/base@1.1.9':
     resolution: {integrity: sha512-8YKhl8GHiNI/pU2VMaofa2Tor7PJRAjwQLBBuilkJ9L5+13yVbC7JO/wS7piioAvPSwR3JKM1IJ/u4xQzbcXKg==}
@@ -5381,6 +5405,34 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.3.3
 
+  '@safe-global/api-kit@2.5.2(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@5.0.10)':
+    dependencies:
+      '@safe-global/protocol-kit': 5.0.2(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@5.0.10)
+      '@safe-global/types-kit': 1.0.0(typescript@5.5.4)
+      node-fetch: 2.7.0
+      viem: 2.21.29(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@5.0.10)
+    transitivePeerDependencies:
+      - bufferutil
+      - encoding
+      - typescript
+      - utf-8-validate
+      - zod
+
+  '@safe-global/protocol-kit@5.0.2(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@5.0.10)':
+    dependencies:
+      '@noble/hashes': 1.5.0
+      '@safe-global/safe-deployments': 1.37.10
+      '@safe-global/safe-modules-deployments': 2.2.4
+      '@safe-global/types-kit': 1.0.0(typescript@5.5.4)
+      abitype: 1.0.6(typescript@5.5.4)
+      semver: 7.6.3
+      viem: 2.21.29(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@5.0.10)
+    transitivePeerDependencies:
+      - bufferutil
+      - typescript
+      - utf-8-validate
+      - zod
+
   '@safe-global/safe-apps-provider@0.18.3(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@5.0.10)':
     dependencies:
       '@safe-global/safe-apps-sdk': 9.1.0(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@5.0.10)
@@ -5411,7 +5463,20 @@ snapshots:
       - utf-8-validate
       - zod
 
+  '@safe-global/safe-deployments@1.37.10':
+    dependencies:
+      semver: 7.6.3
+
   '@safe-global/safe-gateway-typescript-sdk@3.22.2': {}
+
+  '@safe-global/safe-modules-deployments@2.2.4': {}
+
+  '@safe-global/types-kit@1.0.0(typescript@5.5.4)':
+    dependencies:
+      abitype: 1.0.6(typescript@5.5.4)
+    transitivePeerDependencies:
+      - typescript
+      - zod
 
   '@scure/base@1.1.9': {}
 
