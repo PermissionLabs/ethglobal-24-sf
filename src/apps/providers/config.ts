@@ -23,6 +23,9 @@ export const privyConfig: PrivyClientConfig = {
     accentColor: '#676FFF',
     // logo: 'your-logo-url',
   },
+  embeddedWallets: {
+    createOnLogin: 'users-without-wallets',
+  },
   // Import your desired chain from `viem/chains` and pass it to `defaultChain`
   defaultChain: baseSepolia,
 };
