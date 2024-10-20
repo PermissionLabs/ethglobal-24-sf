@@ -13,6 +13,9 @@
     "lint:fix": "biome check src/ --fix"
   },
   "dependencies": {
+    "@account-kit/core": "^4.0.1",
+    "@account-kit/infra": "^4.0.1",
+    "@account-kit/react": "^4.0.1",
     "@safe-global/api-kit": "^2.5.2",
     "@safe-global/protocol-kit": "^5.0.2",
     "@safe-global/safe-apps-react-sdk": "^4.7.2",
