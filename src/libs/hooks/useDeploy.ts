@@ -3,14 +3,13 @@ import { useMutation } from '@tanstack/react-query';
 import { type Abi, encodeFunctionData, parseAbi } from 'viem';
 import { useAccount, useConfig, useDeployContract } from 'wagmi';
 import { SAFE_CREATE_CALL_CONTRACTS } from '../../libs/constants/safe';
-import { MOCK_SWORD_NFT } from '../minter/mocks';
-import { GuardAbi, GuardBytecode } from './guardAbi';
 import { createLightAccountAlchemyClient } from '@alchemy/aa-alchemy';
 import { useDynamicContext } from '@dynamic-labs/sdk-react-core';
 import { type SmartAccountSigner, WalletClientSigner, baseSepolia } from '@alchemy/aa-core';
 import { isEthereumWallet } from '@dynamic-labs/ethereum';
 import { EVM_DEPLOYER_ADDRESS } from '../../libs/constants/evm';
 import { SpotGuard } from '../../abi/SpotGuard/abi';
+import { MOCK_SWORD_NFT } from '../../apps/minter/mocks';
 
 export const useDeployGuard = () => {
   const { safe, sdk } = useSafeAppsSDK();
@@ -55,8 +54,8 @@ export const useDeployGuard = () => {
     console.log('wagmi config is', config);
     console.log('deploy!', safe, address);
     deployContract({
-      abi: GuardAbi,
-      bytecode: GuardBytecode,
+      abi: SpotGuard.abi,
+      bytecode: SpotGuard.byteCode as `0x${string}`,
       account: safe.safeAddress,
     });
   };
@@ -189,7 +188,7 @@ export const useAlchemyDeployContract = () => {
     const response = await smartAccountClient.sendUserOperation({
       uo: {
         target: EVM_DEPLOYER_ADDRESS,
-        data: GuardBytecode,
+        data: SpotGuard.byteCode as `0x${string}`,
       },
     });
 

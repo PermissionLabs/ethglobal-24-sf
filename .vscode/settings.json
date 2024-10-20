@@ -4,6 +4,5 @@
   "editor.codeActionsOnSave": {
     "quickfix.biome": "always"
   },
-  "solidity.defaultCompiler": "localNodeModule",
-  "solidity.formatter": "prettier"
+  "solidity.defaultCompiler": "localNodeModule"
 }

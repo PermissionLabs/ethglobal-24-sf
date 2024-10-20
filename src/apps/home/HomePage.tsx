@@ -6,12 +6,13 @@ import { Minter } from '../minter/Minter';
 import { Send } from '../send/Send';
 import { Signer } from '../signer/Signer';
 import { DynamicWidget, IsBrowser } from '@dynamic-labs/sdk-react-core';
+import { Alchemy } from '../alchemy/Alchemy';
 
 export const HomePage = () => {
   const { address } = useAccount();
 
   return (
-    <div style={{ backgroundColor: '#0f0f0f', width: '100vw', minHeight: '100vh' }}>
+    <div style={{ backgroundColor: '#fff', width: '100vw', minHeight: '100vh' }}>
       <div>
         <IsBrowser>
           <DynamicWidget />
@@ -21,6 +22,8 @@ export const HomePage = () => {
       <p>This is the home page.</p>
       <Connector />
       <p>connected address is {address}</p>
+
+      <Alchemy />
 
       <Send />
       <Minter />
