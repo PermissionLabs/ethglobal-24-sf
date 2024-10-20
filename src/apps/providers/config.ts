@@ -1,5 +1,5 @@
 import { createConfig, http } from 'wagmi';
-import { mainnet, sepolia } from 'wagmi/chains';
+import { baseSepolia, mainnet, sepolia } from 'wagmi/chains';
 import { safe } from 'wagmi/connectors';
 
 export const safeConfig = createConfig({
@@ -8,6 +8,7 @@ export const safeConfig = createConfig({
   transports: {
     [mainnet.id]: http(),
     [sepolia.id]: http(),
+    [baseSepolia.id]: http(),
   },
   ssr: true,
 });

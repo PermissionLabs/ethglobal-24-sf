@@ -3,6 +3,7 @@ import { Connector } from '../connector/Connector';
 import { History } from '../history/History';
 import { Send } from '../send/Send';
 import { Signer } from '../signer/Signer';
+import { Guard } from '../guard/Guard';
 
 export const HomePage = () => {
   const { address } = useAccount();
@@ -15,6 +16,7 @@ export const HomePage = () => {
 
       <Send />
       <Signer />
+      <Guard />
       <div>
         <History />
       </div>
