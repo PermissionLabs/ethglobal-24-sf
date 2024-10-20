@@ -1,10 +1,10 @@
-import { useAccount, useConfig, useDeployContract } from 'wagmi';
-import { GuardAbi, GuardBytecode } from './guardAbi';
 import { useSafeAppsSDK } from '@safe-global/safe-apps-react-sdk';
 import { useMutation } from '@tanstack/react-query';
-import { MOCK_SWORD_NFT } from '../minter/mocks';
 import { type Abi, encodeFunctionData, parseAbi } from 'viem';
+import { useAccount, useConfig, useDeployContract } from 'wagmi';
 import { SAFE_CREATE_CALL_CONTRACTS } from '../../libs/constants/safe';
+import { MOCK_SWORD_NFT } from '../minter/mocks';
+import { GuardAbi, GuardBytecode } from './guardAbi';
 
 export const useDeployGuard = () => {
   const { safe, sdk } = useSafeAppsSDK();

@@ -1,5 +1,5 @@
 import type { PrivyClientConfig } from '@privy-io/react-auth';
-import { createConfig as createWagmiConfig, http } from 'wagmi';
+import { http, createConfig as createWagmiConfig } from 'wagmi';
 import { baseSepolia, mainnet, sepolia } from 'wagmi/chains';
 import { safe } from 'wagmi/connectors';
 

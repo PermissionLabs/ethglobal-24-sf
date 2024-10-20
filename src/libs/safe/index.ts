@@ -1,6 +1,6 @@
-import { SAFE_SERVICE_BASE_URL } from '../constants/safe';
-import {} from '@safe-global/types-kit';
 import SafeApiKit from '@safe-global/api-kit';
+import {} from '@safe-global/types-kit';
+import { SAFE_SERVICE_BASE_URL } from '../constants/safe';
 
 export class Safe {
   baseUrl: string;

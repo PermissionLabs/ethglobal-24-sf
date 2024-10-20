@@ -1,11 +1,11 @@
+import { usePrivy } from '@privy-io/react-auth';
 import { useAccount } from 'wagmi';
 import { Connector } from '../connector/Connector';
+import { Guard } from '../guard/Guard';
 import { History } from '../history/History';
+import { Minter } from '../minter/Minter';
 import { Send } from '../send/Send';
 import { Signer } from '../signer/Signer';
-import { Guard } from '../guard/Guard';
-import { Minter } from '../minter/Minter';
-import { usePrivy } from '@privy-io/react-auth';
 
 export const HomePage = () => {
   const { address } = useAccount();
