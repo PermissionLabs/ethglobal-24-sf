@@ -10,6 +10,8 @@ export const useMint = () => {
   const handleMint = async () => {
     const embeddedWallet = wallets.find((wallet) => wallet.walletClientType === 'privy');
 
+    console.log('hi', embeddedWallet);
+
     if (!embeddedWallet) {
       return;
     }

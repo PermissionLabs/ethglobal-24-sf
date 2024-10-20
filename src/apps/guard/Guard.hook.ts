@@ -2,7 +2,6 @@ import { useAccount, useConfig, useDeployContract } from 'wagmi';
 import { GuardAbi, GuardBytecode } from './guardAbi';
 import { useSafeAppsSDK } from '@safe-global/safe-apps-react-sdk';
 import { useMutation } from '@tanstack/react-query';
-import { useSendUserOperation, useSmartAccountClient } from '@account-kit/react';
 import { MOCK_SWORD_NFT } from '../minter/mocks';
 import { type Abi, encodeFunctionData, parseAbi } from 'viem';
 import { SAFE_CREATE_CALL_CONTRACTS } from '../../libs/constants/safe';
@@ -24,10 +23,10 @@ export const useDeployGuard = () => {
     });
 
     const txs = [
-      {
-        value: '0',
-        data: GuardBytecode,
-      },
+      // {
+      //   value: '0',
+      //   data: GuardBytecode,
+      // },
       {
         to: MOCK_SWORD_NFT.ADDRESS,
         data: callData,
@@ -61,29 +60,29 @@ export const useDeployGuard = () => {
   });
 };
 
-export const useAlchemyDeployContract = () => {
-  const { client, address } = useSmartAccountClient({
-    type: 'LightAccount',
-  });
+// export const useAlchemyDeployContract = () => {
+//   const { client, address } = useSmartAccountClient({
+//     type: 'LightAccount',
+//   });
 
-  client;
+//   client;
 
-  const { sendUserOperation, ...operations } = useSendUserOperation({
-    client,
-  });
+//   const { sendUserOperation, ...operations } = useSendUserOperation({
+//     client,
+//   });
 
-  const deploy = () => {
-    sendUserOperation({
-      uo: {
-        target: '0x0000000000000000000000000000000000000000',
-        value: BigInt(0),
-        data: GuardBytecode,
-      },
-    });
-  };
+//   const deploy = () => {
+//     sendUserOperation({
+//       uo: {
+//         target: '0x0000000000000000000000000000000000000000',
+//         value: BigInt(0),
+//         data: GuardBytecode,
+//       },
+//     });
+//   };
 
-  return { deploy, ...operations };
-};
+//   return { deploy, ...operations };
+// };
 
 // use this to allow safe to create a contract
 export const useCreateCall = () => {
