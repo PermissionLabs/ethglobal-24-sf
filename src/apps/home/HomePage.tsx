@@ -3,6 +3,7 @@ import { Connector } from '../connector/Connector';
 import { History } from '../history/History';
 import { Send } from '../send/Send';
 import { Signer } from '../signer/Signer';
+import { Guard } from '../guard/Guard';
 import { Minter } from '../minter/Minter';
 import { usePrivy } from '@privy-io/react-auth';
 
@@ -29,6 +30,7 @@ export const HomePage = () => {
       <Send />
       <Minter />
       <Signer />
+      <Guard />
       <div>
         <History />
       </div>

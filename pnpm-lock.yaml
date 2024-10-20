@@ -32,6 +32,9 @@ importers:
       '@safe-global/safe-apps-sdk':
         specifier: ^9.1.0
         version: 9.1.0(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@5.0.10)(zod@3.23.8)
+      '@safe-global/safe-contracts':
+        specifier: 1.4.1-2
+        version: 1.4.1-2(ethers@5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))
       '@safe-global/types-kit':
         specifier: ^1.0.0
         version: 1.0.0(typescript@5.5.4)(zod@3.23.8)
@@ -1588,6 +1591,11 @@ packages:
 
   '@safe-global/safe-apps-sdk@9.1.0':
     resolution: {integrity: sha512-N5p/ulfnnA2Pi2M3YeWjULeWbjo7ei22JwU/IXnhoHzKq3pYCN6ynL9mJBOlvDVv892EgLPCWCOwQk/uBT2v0Q==}
+
+  '@safe-global/safe-contracts@1.4.1-2':
+    resolution: {integrity: sha512-UFiqZOamt1lDbyQ16lpzBE8mDdzfnQ3OBftll1erLlwIrdfmhePicQqfLquvyXA8AlqPWQ3ktz1DzpC9UcN+JQ==}
+    peerDependencies:
+      ethers: 5.4.0
 
   '@safe-global/safe-deployments@1.37.10':
     resolution: {integrity: sha512-lcxX9CV+xdcLs4dF6Cx18zDww5JyqaX6RdcvU0o/34IgJ4Wjo3J/RNzJAoMhurCAfTGr+0vyJ9V13Qo50AR6JA==}
@@ -7415,6 +7423,10 @@ snapshots:
       - typescript
       - utf-8-validate
       - zod
+
+  '@safe-global/safe-contracts@1.4.1-2(ethers@5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))':
+    dependencies:
+      ethers: 5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)
 
   '@safe-global/safe-deployments@1.37.10':
     dependencies:

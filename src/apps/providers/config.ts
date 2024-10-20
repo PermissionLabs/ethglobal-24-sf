@@ -9,6 +9,7 @@ export const safeConfig = createWagmiConfig({
   transports: {
     [mainnet.id]: http(),
     [sepolia.id]: http(),
+    [baseSepolia.id]: http(),
   },
   ssr: true,
 });
