@@ -16,7 +16,7 @@ export const Alchemy = () => {
       ) : (
         <p>
           wallet: {/* biome-ignore lint/suspicious/noExplicitAny: <explanation> */}
-          <span>{(data as any)?.getAddress()}</span>
+          <span>{(data as any)?.account.address}</span>
         </p>
       )}
     </div>
