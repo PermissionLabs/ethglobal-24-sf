@@ -114,6 +114,7 @@ export const useCreateCall = () => {
   });
 };
 
+// safe account set guard
 export const useGuardManager = () => {
   const { safe, sdk } = useSafeAppsSDK();
   const testOwnerOnlyGuard = '0x2c69491C235b24Ee3f0E0adf1308BcfB2538b8cd';
