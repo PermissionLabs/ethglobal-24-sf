@@ -1,45 +1,61 @@
-import { useSendUserOperation, useSmartAccountClient } from '@account-kit/react';
-import { encodeFunctionData } from 'viem';
+import { createLightAccountAlchemyClient } from '@alchemy/aa-alchemy';
+import { baseSepolia, type SmartAccountSigner, WalletClientSigner } from '@alchemy/aa-core';
+import { useWallets } from '@privy-io/react-auth';
+import { createWalletClient, custom, encodeFunctionData } from 'viem';
 import { MOCK_SWORD_NFT } from './mocks';
 
 export const useMint = () => {
-  const { client, address } = useSmartAccountClient({
-    type: 'LightAccount',
-  });
-
-  const { sendUserOperationAsync, isSendingUserOperation: isSending } = useSendUserOperation({
-    client,
-  });
+  const { wallets } = useWallets();
 
   const handleMint = async () => {
-    if (!client) {
+    const embeddedWallet = wallets.find((wallet) => wallet.walletClientType === 'privy');
+
+    if (!embeddedWallet) {
       return;
     }
 
-    if (!address) {
-      return;
-    }
+    console.log(embeddedWallet);
 
-    // Using `encodeFunctionData` from `viem`
+    const eip1193provider = await embeddedWallet.getEthereumProvider();
+
+    const privyClient = createWalletClient({
+      account: embeddedWallet.address,
+      chain: baseSepolia,
+      transport: custom(eip1193provider),
+    });
+
+    // Create an AccountKit SmartAccountSigner from the embedded wallet
+    const privySigner: SmartAccountSigner = new WalletClientSigner(privyClient, 'json-rpc');
+
+    const smartAccountClient = await createLightAccountAlchemyClient({
+      signer: privySigner,
+      chain: baseSepolia,
+      apiKey: '5HuHRVjJLoRW2UmfBUxYLyCWEqSffx3U',
+      gasManagerConfig: {
+        policyId: '255b8ab7-09dd-4421-a5a3-55bc89a6808c',
+      },
+    });
+
     const callData = encodeFunctionData({
       abi: MOCK_SWORD_NFT.ABI,
       functionName: MOCK_SWORD_NFT.FUNCTION_NAME,
-      args: MOCK_SWORD_NFT.getArgs(address),
+      args: MOCK_SWORD_NFT.getArgs(smartAccountClient.getAddress()),
     });
 
-    const response = await sendUserOperationAsync({
+    const response = await smartAccountClient.sendUserOperation({
       uo: {
         target: MOCK_SWORD_NFT.ADDRESS,
         data: callData,
       },
     });
 
-    console.log(response);
-    console.log('into', address);
+    const tx = await smartAccountClient.waitForUserOperationTransaction(response);
+
+    console.log('response', response, tx);
   };
 
   return {
-    isSending,
+    isSending: false,
     handleMint,
   };
 };
