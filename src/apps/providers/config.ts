@@ -24,7 +24,7 @@ export const privyConfig: PrivyClientConfig = {
     // logo: 'your-logo-url',
   },
   embeddedWallets: {
-    createOnLogin: 'users-without-wallets',
+    createOnLogin: 'all-users',
   },
   // Import your desired chain from `viem/chains` and pass it to `defaultChain`
   defaultChain: baseSepolia,
