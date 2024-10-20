@@ -3,11 +3,8 @@ import { Connector } from '../connector/Connector';
 import { History } from '../history/History';
 import { Send } from '../send/Send';
 import { Signer } from '../signer/Signer';
-<<<<<<< HEAD
 import { Guard } from '../guard/Guard';
-=======
 import { Minter } from '../minter/Minter';
->>>>>>> main
 
 export const HomePage = () => {
   const { address } = useAccount();

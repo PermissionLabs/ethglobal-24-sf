@@ -1,7 +1,9 @@
-import { useDeployGuard } from './Guard.hook';
+import { useCreateCall, useDeployGuard, useGuardManager } from './Guard.hook';
 
 export const Guard = () => {
   const { mutate } = useDeployGuard();
+  const { mutate: createCall } = useCreateCall();
+  const { mutate: setGuard } = useGuardManager();
 
   return (
     <div>
@@ -10,10 +12,18 @@ export const Guard = () => {
       <button
         type="button"
         onClick={() => {
-          mutate();
+          createCall();
         }}
       >
         deploy
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          setGuard();
+        }}
+      >
+        set guard
       </button>
     </div>
   );

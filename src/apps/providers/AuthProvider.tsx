@@ -1,5 +1,4 @@
 import { useSignerStatus } from '@account-kit/react';
-import { LoginPage } from '../login/LoginPage';
 
 export const AuthProvider = (props: {
   children: React.ReactNode;
@@ -16,5 +15,7 @@ export const AuthProvider = (props: {
     return <>{children}</>;
   }
 
-  return <LoginPage />;
+  return <>{children}</>;
+
+  // return <LoginPage />;
 };
