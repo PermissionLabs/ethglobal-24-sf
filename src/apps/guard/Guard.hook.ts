@@ -5,6 +5,12 @@ import { useAccount, useConfig, useDeployContract } from 'wagmi';
 import { SAFE_CREATE_CALL_CONTRACTS } from '../../libs/constants/safe';
 import { MOCK_SWORD_NFT } from '../minter/mocks';
 import { GuardAbi, GuardBytecode } from './guardAbi';
+import { createLightAccountAlchemyClient } from '@alchemy/aa-alchemy';
+import { useDynamicContext } from '@dynamic-labs/sdk-react-core';
+import { type SmartAccountSigner, WalletClientSigner, baseSepolia } from '@alchemy/aa-core';
+import { isEthereumWallet } from '@dynamic-labs/ethereum';
+import { EVM_DEPLOYER_ADDRESS } from '../../libs/constants/evm';
+import { SpotGuard } from '../../abi/SpotGuard/abi';
 
 export const useDeployGuard = () => {
   const { safe, sdk } = useSafeAppsSDK();
@@ -96,7 +102,7 @@ export const useCreateCall = () => {
   const data = encodeFunctionData({
     abi: createCallAbi,
     functionName: 'performCreate',
-    args: [BigInt(0), GuardBytecode],
+    args: [BigInt(0), SpotGuard.byteCode as `0x${string}`],
   });
 
   // Construct the transaction
@@ -146,5 +152,52 @@ export const useGuardManager = () => {
 
   return useMutation({
     mutationFn: setGuard,
+  });
+};
+
+export const useAlchemyDeployContract = () => {
+  const { primaryWallet } = useDynamicContext();
+
+  const apiKey = process.env.NEXT_PUBLIC_ALCHEMY_API_KEY;
+  const policyId = process.env.NEXT_PUBLIC_ALCHEMY_POLICY_ID as string;
+
+  const handleDeploy = async () => {
+    if (!primaryWallet) {
+      throw new Error('No primary wallet found');
+    }
+
+    if (!isEthereumWallet(primaryWallet)) {
+      throw new Error('This wallet is not a Ethereum wallet');
+    }
+
+    const dynamicProvider = await primaryWallet?.getWalletClient();
+
+    // a smart account signer you can use as an owner on ISmartContractAccount
+    const dynamicSigner: SmartAccountSigner = new WalletClientSigner(
+      dynamicProvider,
+      'dynamic', // signer type
+    );
+    const smartAccountClient = await createLightAccountAlchemyClient({
+      signer: dynamicSigner,
+      chain: baseSepolia,
+      apiKey,
+      gasManagerConfig: {
+        policyId,
+      },
+    });
+
+    const response = await smartAccountClient.sendUserOperation({
+      uo: {
+        target: EVM_DEPLOYER_ADDRESS,
+        data: GuardBytecode,
+      },
+    });
+
+    const tx = await smartAccountClient.waitForUserOperationTransaction(response);
+    return [response, tx];
+  };
+
+  return useMutation({
+    mutationFn: handleDeploy,
   });
 };
