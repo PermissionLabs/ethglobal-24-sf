@@ -1,7 +1,7 @@
+import type { AllTransactionsListResponse } from '@safe-global/api-kit';
+import { useSafeAppsSDK } from '@safe-global/safe-apps-react-sdk';
 import { useAccount } from 'wagmi';
 import { useQuery } from 'wagmi/query';
-import { useSafeAppsSDK } from '@safe-global/safe-apps-react-sdk';
-import type { AllTransactionsListResponse } from '@safe-global/api-kit';
 import { useSafe } from '../../apps/providers/SafeProvider';
 import { QueryKeys } from '../constants/queryKeys';
 

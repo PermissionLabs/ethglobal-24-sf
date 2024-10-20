@@ -1,5 +1,5 @@
 import { createLightAccountAlchemyClient } from '@alchemy/aa-alchemy';
-import { baseSepolia, type SmartAccountSigner, WalletClientSigner } from '@alchemy/aa-core';
+import { type SmartAccountSigner, WalletClientSigner, baseSepolia } from '@alchemy/aa-core';
 import { useWallets } from '@privy-io/react-auth';
 import { createWalletClient, custom, encodeFunctionData } from 'viem';
 import { MOCK_SWORD_NFT } from './mocks';

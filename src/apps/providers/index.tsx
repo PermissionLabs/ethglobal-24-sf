@@ -1,9 +1,9 @@
+import { PrivyProvider } from '@privy-io/react-auth';
+import SafeProvider from '@safe-global/safe-apps-react-sdk';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { WagmiProvider } from 'wagmi';
-import { privyConfig, safeConfig } from './config';
-import SafeProvider from '@safe-global/safe-apps-react-sdk';
 import { SafeProvider as CustomSafeProvider } from './SafeProvider';
-import { PrivyProvider } from '@privy-io/react-auth';
+import { privyConfig, safeConfig } from './config';
 
 const queryClient = new QueryClient();
 

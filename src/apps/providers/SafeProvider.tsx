@@ -1,5 +1,5 @@
 import { useSafeAppsSDK } from '@safe-global/safe-apps-react-sdk';
-import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
+import { type ReactNode, createContext, useContext, useEffect, useState } from 'react';
 import { Safe } from '../../libs/safe';
 
 type SafeContext = {
