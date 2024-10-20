@@ -1,11 +1,14 @@
-import { useMint } from './Minter.hook';
+import { useMint } from './Minter.hooks';
 
 export const Minter = () => {
-  const { mint } = useMint();
+  const { isSending, handleMint } = useMint();
 
   return (
-    <button type="button" onClick={mint}>
-      mint
-    </button>
+    <div>
+      <p>Alchemy Minter</p>
+      <button type="button" disabled={isSending} onClick={handleMint}>
+        Mint!
+      </button>
+    </div>
   );
 };
