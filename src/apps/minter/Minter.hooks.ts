@@ -1,36 +1,32 @@
 import { createLightAccountAlchemyClient } from '@alchemy/aa-alchemy';
 import { type SmartAccountSigner, WalletClientSigner, baseSepolia } from '@alchemy/aa-core';
-import { useWallets } from '@privy-io/react-auth';
-import { createWalletClient, custom, encodeFunctionData } from 'viem';
+import { encodeFunctionData } from 'viem';
 import { MOCK_SWORD_NFT } from './mocks';
+import { useDynamicContext } from '@dynamic-labs/sdk-react-core';
+import { isEthereumWallet } from '@dynamic-labs/ethereum';
 
 export const useMint = () => {
-  const { wallets } = useWallets();
+  const { primaryWallet } = useDynamicContext();
 
   const handleMint = async () => {
-    const embeddedWallet = wallets.find((wallet) => wallet.walletClientType === 'privy');
-
-    console.log('hi', embeddedWallet, wallets);
-
-    if (!embeddedWallet) {
-      return;
+    if (!primaryWallet) {
+      throw new Error('No primary wallet found');
     }
 
-    console.log(embeddedWallet);
+    if (!isEthereumWallet(primaryWallet)) {
+      throw new Error('This wallet is not a Ethereum wallet');
+    }
 
-    const eip1193provider = await embeddedWallet.getEthereumProvider();
+    const dynamicProvider = await primaryWallet?.getWalletClient();
 
-    const privyClient = createWalletClient({
-      account: embeddedWallet.address,
-      chain: baseSepolia,
-      transport: custom(eip1193provider),
-    });
-
-    // Create an AccountKit SmartAccountSigner from the embedded wallet
-    const privySigner: SmartAccountSigner = new WalletClientSigner(privyClient, 'json-rpc');
+    // a smart account signer you can use as an owner on ISmartContractAccount
+    const dynamicSigner: SmartAccountSigner = new WalletClientSigner(
+      dynamicProvider,
+      'dynamic', // signer type
+    );
 
     const smartAccountClient = await createLightAccountAlchemyClient({
-      signer: privySigner,
+      signer: dynamicSigner,
       chain: baseSepolia,
       apiKey: '5HuHRVjJLoRW2UmfBUxYLyCWEqSffx3U',
       gasManagerConfig: {
@@ -56,8 +52,5 @@ export const useMint = () => {
     console.log('response', response, tx);
   };
 
-  return {
-    isSending: false,
-    handleMint,
-  };
+  return { handleMint };
 };

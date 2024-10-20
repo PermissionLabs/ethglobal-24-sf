@@ -1,4 +1,3 @@
-import type { PrivyClientConfig } from '@privy-io/react-auth';
 import { http, createConfig as createWagmiConfig } from 'wagmi';
 import { baseSepolia, mainnet, sepolia } from 'wagmi/chains';
 import { safe } from 'wagmi/connectors';
@@ -13,19 +12,3 @@ export const safeConfig = createWagmiConfig({
   },
   ssr: true,
 });
-
-export const privyConfig: PrivyClientConfig = {
-  /* Replace this with your desired login methods */
-  loginMethods: ['email'],
-  /* Replace this with your desired appearance configuration */
-  appearance: {
-    theme: 'light',
-    accentColor: '#676FFF',
-    // logo: 'your-logo-url',
-  },
-  embeddedWallets: {
-    createOnLogin: 'users-without-wallets',
-  },
-  // Import your desired chain from `viem/chains` and pass it to `defaultChain`
-  defaultChain: baseSepolia,
-};
