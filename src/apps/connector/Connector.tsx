@@ -5,5 +5,5 @@ export const Connector = () => {
   useAutoConnect();
   const { connected } = useSafeAppsSDK();
 
-  return <div>{connected ? 'Connected!' : 'Disconnected!'}</div>;
+  return <div>SAFE: {connected ? 'Connected!' : 'Disconnected!'}</div>;
 };
